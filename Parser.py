@@ -10,6 +10,6 @@ class Parser:
     def parse(self):
         """
         Parse the .asm file, returning an object of type ASMCode that is ready for compilation.
-        :return:
+        :return: An ASMCode object for the parsed code, including symbol values if there are any.
         """
         # TODO: implement.

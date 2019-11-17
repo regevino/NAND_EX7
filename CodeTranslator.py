@@ -5,7 +5,7 @@ class CodeTranslator:
 
     def __init__(self, parsed_asm_code):
         """
-        Creat a translator object that can translate a specific ASMCode object into HACK machine language.
+        Create a translator object that can translate a specific ASMCode object into HACK machine language.
         :param parsed_asm_code: An ASMCode object.
         """
         # TODO: implement.
