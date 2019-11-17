@@ -1,0 +1,30 @@
+avih,regevino
+
+===============================================================================
+Avinoam Hershler, ID 208926964, avinoam.hershler@mail.huji.ac.il
+Dan Regev, ID 208272518, dan.regev@mail.huji.ac.il
+===============================================================================
+
+                           Project 2 - Some HDL Files
+                           -------------------------- 
+  
+
+Submitted Files
+---------------
+README - This file.
+
+HDL files with implementationd for the following required chips:
+ADD16.hdl
+ALU.hdl
+FullAdder.hdl
+HalfAdder.hdl
+Inc16.hdl
+ShiftLeft.hdl
+ShiftRight.hdl
+Mul.hdl
+
+Not16ByBit.hdl - A chip of our design that slightly improves efficiency.
+
+Remarks
+-------
+
