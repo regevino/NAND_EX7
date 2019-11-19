@@ -14,7 +14,7 @@ class ASMCode:
         """
         self.__asm_code = asm_code
         self.__symbols = symbols
-        # TODO: implement.
+        self.__next_free_address = 16
 
     def get_symbol_value(self, symbol):
         """
@@ -36,4 +36,9 @@ class ASMCode:
         :param symbol: The new variable name.
         :return: The variable's address.
         """
-        # TODO: implement.
+        address = self.__next_free_address
+        self.__symbols[symbol] = address
+        self.__next_free_address += 1
+        return address
+
+
