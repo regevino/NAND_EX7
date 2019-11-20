@@ -5,7 +5,7 @@ Avinoam Hershler, ID 208926964, avinoam.hershler@mail.huji.ac.il
 Dan Regev, ID 208272518, dan.regev@mail.huji.ac.il
 ===============================================================================
 
-                           Project 2 - Some HDL Files
+                           Project 6 - a Python Assembler
                            -------------------------- 
   
 
@@ -13,17 +13,14 @@ Submitted Files
 ---------------
 README - This file.
 
-HDL files with implementationd for the following required chips:
-ADD16.hdl
-ALU.hdl
-FullAdder.hdl
-HalfAdder.hdl
-Inc16.hdl
-ShiftLeft.hdl
-ShiftRight.hdl
-Mul.hdl
+ASMCode.py - A python class representing assembler code including symbol names.
+Assembler.py - A python script that receives .asm files and assembles them into machine language code.
+CodeTranslator.py - A python class that translates an ASMCode object into machine language code.
+HackWriter.py - A python class that writes raw machine language code into .hack files.
+Parser.py - A python class that parses a .asm file into an ASMCode object.
 
-Not16ByBit.hdl - A chip of our design that slightly improves efficiency.
+
+
 
 Remarks
 -------
