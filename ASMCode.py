@@ -17,6 +17,10 @@ class ASMCode:
         self.__next_free_address = 16
 
     def get_asm_code(self):
+        """
+        Returns this object's list of assembly code lines
+        :return: this object's list of assembly code lines
+        """
         return self.__asm_code
 
     def get_symbol_value(self, symbol):

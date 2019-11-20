@@ -23,21 +23,27 @@ class Parser:
             line = file.readline()
             line_index = 0
             while line:
+
+                # Erase all white spaces:
                 line = re.sub('\s', '', line)
+
+                # Find and erase comments:
                 comment = line.find('//')
-                if comment > 0:
+                if comment >= 0:
                     line = line[:comment]
                 print(line)
 
                 if not line:
                     continue
 
+                # Find and add label to label dictionary:
                 if line.startswith('('):
                     pattern = re.compile('\((.+)\)')
                     result = re.match(pattern, line)
                     label = result.group(0)
                     symbols[label] = line_index
 
+                # Regular instruction - add to list of instructions:
                 else:
                     lines.append(line)
                     line_index += 1
