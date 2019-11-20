@@ -10,11 +10,12 @@ class HackWriter:
         :param filename: Path to a .hack out file. If it exists, it will be overwritten. If not, it will be
                          created.
         """
-        # TODO: implement.
+        self.__filename = filename
+        self.__code = code
 
     def write_out(self):
         """
         Write the byte-code out into the .hack file.
-        :return:
         """
-        # TODO: implement.
+        with open(self.__filename, 'w') as file:
+            file.writelines(self.__code)
