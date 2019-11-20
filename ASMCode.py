@@ -16,6 +16,9 @@ class ASMCode:
         self.__symbols = symbols
         self.__next_free_address = 16
 
+    def get_asm_code(self):
+        return self.__asm_code
+
     def get_symbol_value(self, symbol):
         """
         Get the value for an assembly symbol. If it's a variable that is being declared, register it's value
