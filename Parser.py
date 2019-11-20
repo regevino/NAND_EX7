@@ -31,16 +31,16 @@ class Parser:
                 comment = line.find('//')
                 if comment >= 0:
                     line = line[:comment]
-                print(line)
 
                 if not line:
+                    line = file.readline()
                     continue
 
                 # Find and add label to label dictionary:
                 if line.startswith('('):
                     pattern = re.compile('\((.+)\)')
                     result = re.match(pattern, line)
-                    label = result.group(0)
+                    label = result.group(1)
                     symbols[label] = line_index
 
                 # Regular instruction - add to list of instructions:

@@ -1,3 +1,7 @@
+DEFAULT_ASM_LABELS = {'SP': 0, 'LCL': 1, 'ARG': 2, 'THIS': 3, 'THAT': 4, 'SCREEN': 16384, 'KBD': 24576}
+DEFAULT_ASM_LABELS.update({'R{}'.format(i): i for i in range(16)})
+
+
 class ASMCode:
     """
     Represents parsed assembly code ready for translation, and holds all the symbol info (i.e labels and
@@ -10,9 +14,10 @@ class ASMCode:
         :param asm_code: A list of strings, each containing a line of assembly code, with no whitespaces and
                          no label decelerations.
         :param symbols: A dictionary containing symbol values.
-                        Defaults to None #TODO: Maybe change this to builtin hack symbols
+                        Defaults to Default Hack assembly labels.
         """
         self.__asm_code = asm_code
+        symbols.update(DEFAULT_ASM_LABELS)
         self.__symbols = symbols
         self.__next_free_address = 16
 
@@ -47,5 +52,3 @@ class ASMCode:
         self.__symbols[symbol] = address
         self.__next_free_address += 1
         return address
-
-
