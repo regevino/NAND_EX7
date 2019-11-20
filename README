@@ -19,6 +19,8 @@ CodeTranslator.py - A python class that translates an ASMCode object into machin
 HackWriter.py - A python class that writes raw machine language code into .hack files.
 Parser.py - A python class that parses a .asm file into an ASMCode object.
 
+Assembler - Shell script to wrap our assembler.py script.
+Makefile - Make script to ensure users have execute permissions for Assembler.
 
 
 
