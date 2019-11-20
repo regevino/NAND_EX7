@@ -23,8 +23,11 @@ class Parser:
             line = file.readline()
             line_index = 0
             while line:
-                line = line.replace('\s', '')
-                line = line[:line.find('//')]
+                line = re.sub('\s', '', line)
+                comment = line.find('//')
+                if comment > 0:
+                    line = line[:comment]
+                print(line)
 
                 if not line:
                     continue

@@ -18,4 +18,5 @@ class HackWriter:
         Write the byte-code out into the .hack file.
         """
         with open(self.__filename, 'w') as file:
-            file.writelines(self.__code)
+            for line in self.__code:
+                file.writelines(line + '\n')

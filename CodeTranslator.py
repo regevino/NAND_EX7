@@ -46,8 +46,11 @@ class CodeTranslator:
 
     def __parse_c_instruction(self, instruction):
         split_index = instruction.find(';')
-        comp = instruction[:split_index]
-        jump = instruction[split_index + 1:]
+        jump = ''
+        comp = instruction
+        if split_index >= 0:
+            comp = instruction[:split_index]
+            jump = instruction[split_index + 1:]
 
         split_index = comp.find('=')
         dest = ""
