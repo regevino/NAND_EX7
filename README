@@ -5,7 +5,7 @@ Avinoam Hershler, ID 208926964, avinoam.hershler@mail.huji.ac.il
 Dan Regev, ID 208272518, dan.regev@mail.huji.ac.il
 ===============================================================================
 
-                           Project 6 - a Python Assembler
+                           Project 7 - a Python VMTranslator
                            -------------------------- 
   
 
@@ -13,14 +13,14 @@ Submitted Files
 ---------------
 README - This file.
 
-ASMCode.py - A python class representing assembler code including symbol names.
-Assembler.py - A python script that receives .asm files and assembles them into machine language code.
-CodeTranslator.py - A python class that translates an ASMCode object into machine language code.
-HackWriter.py - A python class that writes raw machine language code into .hack files.
-Parser.py - A python class that parses a .asm file into an ASMCode object.
+VMCode.py - A python class representing vm code.
+VMTranslator.py - A python script that receives .vm files and compiles them into hack assembly.
+CodeTranslator.py - A python class that translates a VMCode object into HACK assembly.
+AssemblyWriter.py - A python class that writes HACK assembly into a .asm file.
+Parser.py - A python class that parses a .vm file into a VMCode object.
 
-Assembler - Shell script to wrap our assembler.py script.
-Makefile - Make script to ensure users have execute permissions for Assembler.
+VMtranslator - Shell script to wrap our VMTranslator.py script.
+Makefile - Make script to ensure users have execute permissions for VMtranslator.
 
 
 

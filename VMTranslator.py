@@ -12,12 +12,12 @@ if __name__ == '__main__':
 
     files_list = [os.path.abspath(vm_file_path)]
     path_to_dir = ''
-    out_file = files_list[0][:-4] + '.asm'
+    out_file = files_list[0][:-3] + '.asm'
 
     if os.path.isdir(vm_file_path):
         files_list = os.listdir(vm_file_path)
         path_to_dir = os.path.abspath(vm_file_path)
-        out_file = path_to_dir + os.path.basename(path_to_dir[:-1]) + '.asm'
+        out_file = os.path.join(path_to_dir, os.path.basename(path_to_dir) + '.asm')
 
     asm_file_translations = []
     for file in filter(lambda x: x[-3:] == '.vm', files_list):
