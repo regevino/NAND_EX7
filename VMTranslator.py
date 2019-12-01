@@ -17,10 +17,10 @@ if __name__ == '__main__':
     if os.path.isdir(vm_file_path):
         files_list = os.listdir(vm_file_path)
         path_to_dir = os.path.abspath(vm_file_path)
-        out_file = path_to_dir + '.asm'
+        out_file = path_to_dir + os.path.basename(path_to_dir[:-1]) + '.asm'
 
     asm_file_translations = []
-    for file in filter(lambda x: x[-4:] == '.asm', files_list):
+    for file in filter(lambda x: x[-3:] == '.vm', files_list):
         file = os.path.join(path_to_dir, file)
         file_parser = Parser(file)
         parsed_code = file_parser.parse()

@@ -34,15 +34,6 @@ class Parser:
                     line = file.readline()
                     continue
 
-                # # Find and add label to label dictionary:
-                # if line.startswith('('):
-                #     pattern = re.compile('\((.+)\)')
-                #     result = re.match(pattern, line)
-                #     label = result.group(1)
-                #     symbols[label] = line_index
-
-                # Regular instruction - add to list of instructions:
-
                 lines.append(line)
                 line = file.readline()
 

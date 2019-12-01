@@ -3,7 +3,7 @@ class AssemblyWriter:
     Writes HACK machine language code into a .asm file with a given name.
     """
 
-    def __init__(self, code, filename):
+    def __init__(self, code_translations, filename):
         """
         Create a AssemblyWriter object for some byte code.
         :param code: A 16-bit byte array containing Assembly machine language code.
@@ -11,7 +11,9 @@ class AssemblyWriter:
                          created.
         """
         self.__filename = filename
-        self.__code = code
+        self.__code = []
+        for code_chunk in code_translations:
+            self.__code += code_chunk
 
     def write_out(self):
         """
