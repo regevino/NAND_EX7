@@ -1,3 +1,4 @@
+import os
 import re
 
 from VMCode import VMCode
@@ -37,4 +38,4 @@ class Parser:
                 lines.append(line)
                 line = file.readline()
 
-        return VMCode(lines, file)
+        return VMCode(lines, os.path.basename(file.name)[:-2])

@@ -1,11 +1,12 @@
-ARITHMETIC_OPERATIONS = {'add': lambda x: ['M=M+D'], 'sub': lambda x: ['M=M-D'],
+ARITHMETIC_OPERATIONS = {'add': lambda x: ['M=M+D'],
+                         'sub': lambda x: ['M=M-D'],
                          'neg': lambda x: ['A=A+1', 'M=-M', '@SP', 'M=M+1'],
-                         'eq': lambda x: ['D=M-D', '@' + str(x + 9), 'M;JEQ', '@SP', 'A=M-1', 'M=0',
-                                          '@' + str(x + 12), '0;JMP', '@SP', 'A=M-1', 'M=-1'],
-                         'gt': lambda x: ['D=D-M', '@' + str(x + 9), 'M;JGT', '@SP', 'A=M-1', 'M=0',
-                                          '@' + str(x + 12), '0;JMP', '@SP', 'A=M-1', 'M=-1'],
-                         'lt': lambda x: ['D=M-D', '@' + str(x + 9), 'M;JGT', '@SP', 'A=M-1', 'M=0',
-                                          '@' + str(x + 12), '0;JMP', '@SP', 'A=M-1', 'M=-1'],
+                         'eq': lambda x: ['D=M-D', '@PUSH_TRUE{}'.format(x), 'D;JEQ', '@SP', 'A=M-1', 'M=0',
+                                          '@END{}'.format(x), '0;JMP', '(PUSH_TRUE{})'.format(x),'@SP', 'A=M-1', 'M=-1', '(END{})'.format(x)],
+                         'gt': lambda x: ['D=M-D', '@PUSH_TRUE{}'.format(x), 'D;JGT', '@SP', 'A=M-1', 'M=0',
+                                          '@END{}'.format(x), '0;JMP', '(PUSH_TRUE{})'.format(x),'@SP', 'A=M-1', 'M=-1', '(END{})'.format(x)],
+                         'lt': lambda x: ['D=D-M', '@PUSH_TRUE{}'.format(x), 'D;JGT', '@SP', 'A=M-1', 'M=0',
+                                          '@END{}'.format(x), '0;JMP', '(PUSH_TRUE{})'.format(x),'@SP', 'A=M-1', 'M=-1', '(END{})'.format(x)],
                          'and': lambda x: ['M=M&D'],
                          'or': lambda x: ['M=M|D'],
                          'not': lambda x: ['A=A+1', 'M=!M', '@SP', 'M=M+1']}
@@ -23,14 +24,14 @@ class CodeTranslator:
         """
         self.__VM_code = parsed_VM_code
         filename = self.__VM_code.get_filename()
-        self.SEGMENTS = {'argument': lambda x: ['@ARG', 'D=A', '@' + str(x), 'D=D+A', '@R13', 'M=D'],
-                         'local': lambda x: ['@LCL', 'D=A', '@' + str(x), 'D=D+A', '@R13', 'M=D'],
-                         'static': lambda x: ['@' + filename + '.' + str(x), '@R13', 'M=D'],
-                         'constant': lambda x: ['@' + str(x), 'D=A', '@R13', 'M=D'],
-                         'this': lambda x: ['@THIS', 'D=A', '@' + str(x), 'D=D+A', '@R13', 'M=D'],
-                         'that': lambda x: ['@THAT', 'D=A', '@' + str(x), 'D=D+A', '@R13', 'M=D'],
+        self.SEGMENTS = {'argument': lambda x: ['@ARG', 'D=M', '@' + str(x), 'D=D+A', '@R13', 'M=D'],
+                         'local': lambda x: ['@LCL', 'D=M', '@' + str(x), 'D=D+A', '@R13', 'M=D'],
+                         'static': lambda x: ['@' + str(filename) + str(x), 'D=A', '@R13', 'M=D'],
+                         'constant': lambda x: ['@' + str(x), 'D=A', '@R14', 'M=D', 'D=A', '@R13', 'M=D'],
+                         'this': lambda x: ['@THIS', 'D=M', '@' + str(x), 'D=D+A', '@R13', 'M=D'],
+                         'that': lambda x: ['@THAT', 'D=M', '@' + str(x), 'D=D+A', '@R13', 'M=D'],
                          'pointer': lambda x: ['@R3', 'D=A', '@' + str(x), 'D=D+A', '@R13', 'M=D'],
-                         'temp': lambda x: ['@R13', 'D=A', '@' + str(x), 'D=D+A', '@R13', 'M=D']}
+                         'temp': lambda x: ['@R5', 'D=A', '@' + str(x), 'D=D+A', '@R13', 'M=D']}
 
     def translate(self):
         """
@@ -63,6 +64,7 @@ class CodeTranslator:
     def __push():
         lines = []
         lines.append('@R13')
+        lines.append('A=M')
         lines.append("D=M")
         lines.append('@SP')
         lines.append('M=M+1')
@@ -71,19 +73,21 @@ class CodeTranslator:
         return lines
 
     @staticmethod
-    def __pop():
+    def __pop(save_result=True):
         lines = []
         lines.append('@SP')
         lines.append('M=M-1')
         lines.append('A=M')
         lines.append('D=M')
-        lines.append('@R13')
-        lines.append('M=D')
+        if save_result:
+            lines.append('@R13')
+            lines.append('A=M')
+            lines.append('M=D')
         return lines
 
     def __arithmetic(self, arithmetic_func, index):
         lines = []
-        lines += self.__pop()
+        lines += self.__pop(save_result=False)
         lines.append('@SP')
         lines.append('A=M-1')
         index += len(lines)
