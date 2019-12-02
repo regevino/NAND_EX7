@@ -2,11 +2,14 @@ ARITHMETIC_OPERATIONS = {'add': lambda x: ['M=M+D'],
                          'sub': lambda x: ['M=M-D'],
                          'neg': lambda x: ['A=A+1', 'M=-M', '@SP', 'M=M+1'],
                          'eq': lambda x: ['D=M-D', '@PUSH_TRUE{}'.format(x), 'D;JEQ', '@SP', 'A=M-1', 'M=0',
-                                          '@END{}'.format(x), '0;JMP', '(PUSH_TRUE{})'.format(x),'@SP', 'A=M-1', 'M=-1', '(END{})'.format(x)],
+                                          '@END{}'.format(x), '0;JMP', '(PUSH_TRUE{})'.format(x),
+                                          '@SP', 'A=M-1', 'M=-1', '(END{})'.format(x)],
                          'gt': lambda x: ['D=M-D', '@PUSH_TRUE{}'.format(x), 'D;JGT', '@SP', 'A=M-1', 'M=0',
-                                          '@END{}'.format(x), '0;JMP', '(PUSH_TRUE{})'.format(x),'@SP', 'A=M-1', 'M=-1', '(END{})'.format(x)],
+                                          '@END{}'.format(x), '0;JMP', '(PUSH_TRUE{})'.format(x),
+                                          '@SP', 'A=M-1', 'M=-1', '(END{})'.format(x)],
                          'lt': lambda x: ['D=D-M', '@PUSH_TRUE{}'.format(x), 'D;JGT', '@SP', 'A=M-1', 'M=0',
-                                          '@END{}'.format(x), '0;JMP', '(PUSH_TRUE{})'.format(x),'@SP', 'A=M-1', 'M=-1', '(END{})'.format(x)],
+                                          '@END{}'.format(x), '0;JMP', '(PUSH_TRUE{})'.format(x),
+                                          '@SP', 'A=M-1', 'M=-1', '(END{})'.format(x)],
                          'and': lambda x: ['M=M&D'],
                          'or': lambda x: ['M=M|D'],
                          'not': lambda x: ['A=A+1', 'M=!M', '@SP', 'M=M+1']}
@@ -46,7 +49,7 @@ class CodeTranslator:
 
     def translate_instruction(self, line, index):
         """
-        Recieves a line of vm code and translates command.
+        Receivesz a line of vm code and translates command.
         :param index:
         :param line: line of code to translate.
         :return: the lines of translated assembly code.
